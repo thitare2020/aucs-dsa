@@ -1,10 +1,9 @@
-### TODO import the file
-from heapsort import heapsort
+from quicksort import quicksort
 import time
 import random
 import sys
 
-ALG_NAME = "Heapsort"
+ALG_NAME = "Quicksort"
 DATA_COUNT = 1000 if len(sys.argv) < 2 else int(sys.argv[1])
 SHOW_DATA = False if len(sys.argv) < 3 else bool(sys.argv[2])
 
@@ -13,8 +12,17 @@ def is_asc_sorted(A):
         if A[i] > A[i+1]:
             return False
     return True
+
+def call_sort_alg():
+    sys.setrecursionlimit(100000) # 10000 is an example, try with different values
+    return quicksort(A,0,len(A)-1)
+
+
+
+
+#---------------------------------------------------------
     
-print '##",ALG_NAME,"##'
+print '##',ALG_NAME,'##'
 print 'n =',DATA_COUNT
 ## BEST CASE
 A = []
@@ -25,8 +33,7 @@ print "Best case"
 START = time.clock()
 if SHOW_DATA: print "0",A
 
-#### TODO CALL algorithm ####
-heapsort(A)
+call_sort_alg()
 
 if SHOW_DATA: print "1",A
 END = time.clock()
@@ -41,8 +48,7 @@ print "Average case"
 START = time.clock()
 if SHOW_DATA: print "0",A
 
-#### TODO CALL algorithm ####
-heapsort(A)
+call_sort_alg()
 
 if SHOW_DATA: print "1",A
 END = time.clock()
@@ -57,8 +63,7 @@ print "Worst case"
 START = time.clock()
 if SHOW_DATA: print "0",A
 
-#### TODO CALL algorithm ####
-heapsort(A)
+call_sort_alg()
 
 if SHOW_DATA: print "1",A
 END = time.clock()
