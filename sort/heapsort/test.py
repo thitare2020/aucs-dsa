@@ -4,8 +4,8 @@ import random
 import sys
 
 
-DATA_COUNT = 1000 if len(sys.argv) < 1 else int(sys.argv[1])
-SHOW_DATA = False if len(sys.argv) < 2 else bool(sys.argv[2])
+DATA_COUNT = 1000 if len(sys.argv) < 2 else int(sys.argv[1])
+SHOW_DATA = False if len(sys.argv) < 3 else bool(sys.argv[2])
 
 def is_asc_sorted(A):
     for i in range(0,len(A)-1):
