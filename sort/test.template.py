@@ -13,8 +13,13 @@ def is_asc_sorted(A):
         if A[i] > A[i+1]:
             return False
     return True
+
+def call_alg():
+    heapsort(A)
+
+#----------------------------------------------------------------
     
-print '##",ALG_NAME,"##'
+print '##',ALG_NAME,'##'
 print 'n =',DATA_COUNT
 ## BEST CASE
 A = []
@@ -25,8 +30,7 @@ print "Best case"
 START = time.clock()
 if SHOW_DATA: print "0",A
 
-#### TODO CALL algorithm ####
-heapsort(A)
+call_alg()
 
 if SHOW_DATA: print "1",A
 END = time.clock()
@@ -41,8 +45,7 @@ print "Average case"
 START = time.clock()
 if SHOW_DATA: print "0",A
 
-#### TODO CALL algorithm ####
-heapsort(A)
+call_alg()
 
 if SHOW_DATA: print "1",A
 END = time.clock()
@@ -57,8 +60,7 @@ print "Worst case"
 START = time.clock()
 if SHOW_DATA: print "0",A
 
-#### TODO CALL algorithm ####
-heapsort(A)
+call_alg()
 
 if SHOW_DATA: print "1",A
 END = time.clock()
