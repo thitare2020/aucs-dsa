@@ -23,6 +23,14 @@ def list_insert(L,x):
     L.head = x
     x.prev = None
 
+def list_delete(L,x):
+    if x.prev != None:
+        x.prev.next = x.next
+    else:
+        L.head = x.next
+    if x.next != None:
+        x.next.prev = x.prev    
+
 L = LinkedList()
 list_insert(L,Node(10))
 list_insert(L,Node(1))
