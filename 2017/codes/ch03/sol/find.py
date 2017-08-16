@@ -18,6 +18,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+from random import randint
+from time import time
 
 
 def find(S, val):
@@ -29,3 +31,24 @@ def find(S, val):
             return j          # a match was found at index j
         j += 1
     return -1
+
+
+n = 20
+DATA = [randint(0, n)] * n
+DATA = [randint(0, n) for x in range(n)]
+DATA.sort()
+print('DATA:', DATA)
+DATA[n - 1] = n + 1
+print('DATA:', DATA)
+
+key = randint(0, n)
+key = DATA[n - 1]
+print('key:', key)
+
+start_time = time()
+index = find(DATA, key)
+end_time = time()
+
+print('index:', index)
+elapsed = end_time - start_time
+print('Time:', elapsed)
