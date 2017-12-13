@@ -7,8 +7,10 @@ import sys
 def dataGenerator(dataSize,outputfile):
     with open(outputfile, 'w', newline='') as csvfile:
         wr = csv.writer(csvfile,delimiter=",")
+        data = []
         for x in range(0,dataSize):
-            wr.writerow([random.randint(0,dataSize)])
+            data.append(random.randint(0,dataSize))
+        wr.writerow(data)
 
 if __name__ == "__main__":
     try:
