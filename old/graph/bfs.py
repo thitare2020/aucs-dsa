@@ -12,25 +12,42 @@ def adj(u):
     return adj_nodes
 
 
+class _data():
+    def __init__(self, k, d):
+        self.index = 0
+        self.key = k
+        self.d = d
+
+    def __repr__(self):
+        return str(self.index) + ':' + str(self.index)
+
+
+def _comp(a, b):
+    return a.d < b.d
+
+
 def BFS(G, s):
-    global d, color, p, V
+    global d, color, p, V, source
     color = [0] * V  # WHITE = 0, GRAY = 1, BLACK = 2
     d = [float('inf')] * V
     d[source] = 0
     p = [None] * V
 
-    Q = PriorityQueue()
-    Q.enqueue(source)
+    Q = PriorityQueue(_comp)
+    x = _data(source, d[source])
+    Q.enqueue(x)
 
     while not Q.empty():
         print(Q.a)
-        u = Q.extractMin()
+        x = Q.extractMin()
+        u = x.key
         for v in adj(u):
             if color[v] == 0:
                 color[v] = 1
                 d[v] = d[u] + 1
                 p[v] = u
-                Q.enqueue(v)
+                x = _data(v, d[v])
+                Q.enqueue(x)
         color[u] = 2
 
 

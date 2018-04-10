@@ -1,38 +1,42 @@
+# Each obj to be inserted must be a class instance
+# A field called 'index' will be added
+
+
 class PriorityQueue:
-    # def __init__(self, CompareFunc):
-    def __init__(self):
-        # self.Comp = CompareFunc
+    def __init__(self, CompareFunc):
+        self.Comp = CompareFunc
         self.a = []
 
     def empty(self):
-        return self.a == []
+        if self.a == []:
+            return True
+        else:
+            return False
 
     def heapify(self, i):
         l = i * 2 + 1
         r = (i + 1) * 2
-        # if l < len(self.a) and self.Comp(self.a[i], self.a[l]) == False:
-        if l < len(self.a) and self.a[i] < self.a[l]:
+        if l < len(self.a) and self.Comp(self.a[i], self.a[l]) == False:
             largest = l
         else:
             largest = i
-        if r < len(self.a) and self.a[largest] >= self.a[r]:
+        if r < len(self.a) and self.Comp(self.a[largest], self.a[r]) == False:
             largest = r
         if largest != i:
             self.a[i], self.a[largest] = self.a[largest], self.a[i]
-            # self.a[i].index = i
-            # self.a[i].largest = largest
+            self.a[i].index = i
+            self.a[i].largest = largest
             self.heapify(largest)
 
     def enqueue(self, x):
         self.a.append(x)
         i = len(self.a) - 1
-        # self.a[i].index = i
+        self.a[i].index = i
         j = int((i - 1) / 2)
-        # while i > 0 and self.Comp(self.a[i], self.a[j]) == True:
-        while i > 0 and self.a[i] < self.a[j]:
+        while i > 0 and self.Comp(self.a[i], self.a[j]) == True:
             self.a[i], self.a[j] = self.a[j], self.a[i]
-            # self.a[i].index = i
-            # self.a[j].index = j
+            self.a[i].index = i
+            self.a[j].index = j
             i = j
             j = int((i - 1) / 2)
 
@@ -40,27 +44,19 @@ class PriorityQueue:
         x = self.a[0]
         i = len(self.a) - 1
         self.a[0], self.a[i] = self.a[i], self.a[0]
-        # self.a[0].index = 0
-        # self.a[i].index = i
+        self.a[0].index = 0
+        self.a[i].index = i
         del self.a[i]
         self.heapify(0)
         return x
 
-
-if __name__ == '__main__':
-    Q = PriorityQueue()
-    Q.enqueue(10)
-    Q.enqueue(5)
-    Q.enqueue(4)
-    Q.enqueue(2)
-    Q.enqueue(3)
-
-    print(Q.a)
-
-    Q.enqueue(11)
-    Q.enqueue(6)
-    Q.enqueue(7)
-    Q.enqueue(1)
-    Q.enqueue(9)
-
-    print(Q.a)
+    def decreaseKey(self, x, k):
+        x.key = k
+        i = x.index
+        j = (i - 1) / 2
+        while i > 0 and self.Comp(self.a[i], self.a[j]) == True:
+            self.a[i], self.a[j] = self.a[j], self.a[i]
+            self.a[i].index = i
+            self.a[j].index = j
+            i = j
+            j = int((i - 1) / 2)
