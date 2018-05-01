@@ -8,13 +8,6 @@ for i in range(V):
     w[i] = l
 
 
-def relax(u, v):
-    global p, d, w
-    if v.d > u.d + w[u.i][v.i]:
-        v.d = u.d + w[u.i][v.i]
-        v.p = u
-
-
 class Vertex:
     def __init__(self, i):
         self.i = i
@@ -25,14 +18,24 @@ class Vertex:
         return "%d:%s:%s" % (self.i, self.p, self.d)
 
 
-def adj(u):
-    global w
-    # WRONG!
-    return w[u.i]
+def adj(ui):
+    global w, V
+    alist = []
+    for i in range(V):
+        if w[ui][i] > 0:
+            alist.append(i)
+    return alist
 
 
 def comp(x, y):
     return x.d < y.d
+
+
+def relax(u, v):
+    global w
+    if v.d > u.d + w[u.i][v.i]:
+        v.d = u.d + w[u.i][v.i]
+        v.p = u.i
 
 
 def dijkstra():
@@ -51,9 +54,9 @@ def dijkstra():
     while not Q.empty():
         u = Q.extractMin()
         S.append(u)
-        for vi in adj(u):
+        for vi in adj(u.i):
             v = vlist[vi]
-            relax(u, u)
+            relax(u, v)
 
 
 S = []
