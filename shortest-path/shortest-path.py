@@ -39,24 +39,8 @@ def relax(u, v):
 
 
 def dijkstra():
-    global S, s
-    S = []
-    Q = PriorityQueue(comp)
-
-    vlist = []
-    for i in range(V):
-        vObj = Vertex(i)
-        vlist.append(vObj)
-        if i == s:
-            vObj.d = 0
-        Q.enqueue(vObj)
-
-    while not Q.empty():
-        u = Q.extractMin()
-        S.append(u)
-        for vi in adj(u.i):
-            v = vlist[vi]
-            relax(u, v)
+    # your code goes here
+    pass
 
 
 S = []
