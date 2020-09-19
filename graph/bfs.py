@@ -35,9 +35,9 @@ def _comp(a, b):
 def BFS(G, s):
     global d, color, p, V, source
     color = [0] * V  # WHITE = 0, GRAY = 1, BLACK = 2
-    d = [float('inf')] * V
+    d = [float('inf')] * V # path weight
     d[source] = 0
-    p = [None] * V
+    p = [None] * V # parent
 
     Q = PriorityQueue(_comp)
     x = _data(source, d[source])
@@ -58,25 +58,40 @@ def BFS(G, s):
 
 
 def print_paths(source):
-    # Print all path from source
-    pass
+    if source == 1:
+        print(1)
+    elif p[source] == None:
+        print(f"No path from {1} to {source} exists")
+    else:
+        print_paths(p[source])
+        print(source)
+
+
+
+
+    
 
 
 # Let r = 0, s = 1, t = 2, and so on
+
 G = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
+    #r #s #t #u #v #w #x #y
+    [0, 1, 0, 0, 1, 0, 0, 0],#r
+    [1, 0, 0, 0, 0, 1, 0, 0],#s
+    [0, 0, 0, 1, 0, 1, 1, 0],#t
+    [0, 0, 1, 0, 0, 0, 1, 1],#u
+    [1, 0, 0, 0, 0, 0, 0, 0],#v
+    [0, 1, 1, 0, 0, 0, 1, 0],#w
+    [0, 0, 1, 1, 0, 1, 0, 1],#x
+    [0, 0, 0, 1, 0, 0, 1, 0]#y
 ]
+
 
 # Size of V
 V = 8
 source = 1
+
+
 
 BFS(G, source)
 
@@ -87,3 +102,4 @@ print('ADJ of source:', adj(source))
 print('color:', color)
 print('d:', d)
 print('p:', p)
+print_paths(3)
